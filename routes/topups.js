@@ -21,17 +21,26 @@ router.post('/topup', (req, res, next) => {
             res.status(500);
             res.json({ success: false, msg: 'Failed to top up' });
         } else {
-            Account.loadAccount(updatedBalance.userId, updatedBalance.amount, (error, data) => {
+            Account.addAmount(updatedBalance.userId, updatedBalance.amount, (error, data) => {
                 if (error) {
                     res.status(500);
-                    res.json({ success: false, msg: "Failed to top up" });
+                    res.json({ success: false, msg: "Failed to add amount" });
+                } else {
+                    Account.loadAccount(updatedBalance.userId, data[0].balance, (error, data) => {
+                        console.log(data);
+                        if (error) {
+                            res.status(500);
+                            res.json({ success: false, msg: "Failed to top up" });
+                        } else {
+                            res.status(200);
+                            res.json({ success: true, msg: "top up was successful" });
+                        }
+                    });
                 }
             });
-            res.status(200);
-            res.json({ success: true, msg: 'top up was successful' });
         }
-    })
-})
+    });
+});
 
 router.get("/topup/:id", (req, res) => {
 
@@ -40,6 +49,7 @@ router.get("/topup/:id", (req, res) => {
             res.status(500);
             res.json({ success: false, msg: err.errmsg });
         } else {
+
             res.status(200);
             res.json({ success: true, topups: topups });
         }

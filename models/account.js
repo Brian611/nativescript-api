@@ -23,3 +23,15 @@ module.exports.loadAccount = (userId, amount, callback) => {
     const query = { userId: userId };
     Account.findOneAndUpdate(query, { $set: { balance: amount } }, { new: true, upsert: true }, callback);
 };
+
+module.exports.addAmount = (userId, balance, callback) => {
+    const query = { userId: userId };
+    console.log("add balance: ", balance);
+    Account.aggregate([{ $project: { query, balance: { $add: ["$balance", balance] } } }], callback);
+};
+
+module.exports.minusAmount = (userId, balance, callback) => {
+    const query = { userId: userId };
+    console.log("minus balance: ", balance);
+    Account.aggregate([{ $project: { query, balance: { $subtract: ["$balance", balance] } } }], callback);
+};

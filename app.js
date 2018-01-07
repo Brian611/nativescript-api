@@ -26,6 +26,8 @@ const app = express();
 const users = require('./routes/users');
 const accounts = require('./routes/accounts');
 const topups = require('./routes/topups');
+const orders = require('./routes/orders');
+const products = require('./routes/products');
 
 const port = 3000 | process.env.PORT;
 
@@ -43,6 +45,8 @@ require('./configuration/passport')(passport);
 app.use('/users', users);
 app.use('/accounts', accounts);
 app.use('/topups', topups);
+app.use('/orders', orders);
+app.use('/products', products);
 
 app.get('/', (req, res) => {
     res.send('Invalid Endpoint');
