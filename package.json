@@ -4,7 +4,8 @@
   "description": "NodeJS and Angular 2 shopping App",
   "main": "app",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
   },
   "repository": {
     "type": "git",
