@@ -1,0 +1,29 @@
+{
+  "name": "hhapp",
+  "version": "1.0.0",
+  "description": "NodeJS and Angular 2 shopping App",
+  "main": "app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brian611/HHApp.git"
+  },
+  "author": "Brian Pooe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Brian611/HHApp/issues"
+  },
+  "homepage": "https://github.com/Brian611/HHApp#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.5",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.1.0"
+  }
+}
