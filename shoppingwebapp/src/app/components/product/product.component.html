@@ -1,0 +1,112 @@
+<h3 class="text-center">Product</h3>
+<form class="form-horizontal">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <h2>Add Product</h2>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 field-label-responsive">
+      <label for="desc">Desc</label>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon" style="width: 2.6rem">
+            <i class="fa fa-user"></i>
+          </div>
+          <input type="text" name="desc" class="form-control" id="desc" placeholder="desc" required autofocus>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-control-feedback">
+        <span class="text-danger align-middle">
+          <!-- Put name validation error messages here -->
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 field-label-responsive">
+      <label for="price">Price</label>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon" style="width: 2.6rem">
+            <i class="fa fa-at"></i>
+          </div>
+          <input type="number" name="price" class="form-control" id="price" placeholder="300" required autofocus>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-control-feedback">
+        <span class="text-danger align-middle">
+          <!-- Put e-mail validation error messages here -->
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 field-label-responsive">
+      <label for="quantity">Quantity</label>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group has-danger">
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon" style="width: 2.6rem">
+            <i class="fa fa-key"></i>
+          </div>
+          <input type="number" name="qty" class="form-control" id="qty" placeholder="1" required>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 field-label-responsive">
+      <label for="img">Image</label>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group has-danger">
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon" style="width: 2.6rem">
+            <i class="fa fa-key"></i>
+          </div>
+          <input type="text" name="img" class="form-control" id="img" placeholder="1" required>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <button type="submit" class="btn btn-success">
+        <i class="fa fa-user-plus"></i> Add Product</button>
+    </div>
+  </div>
+</form>
+<br><br>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Desc</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+        <td>Otto</td>
+      </tr>
+    </tbody>
+  </table>
