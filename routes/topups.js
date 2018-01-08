@@ -33,7 +33,7 @@ router.post('/topup', (req, res, next) => {
                             res.json({ success: false, msg: "Failed to top up" });
                         } else {
                             res.status(200);
-                            res.json({ success: true, msg: "top up was successful" });
+                            res.json({ success: true, msg: data });
                         }
                     });
                 }

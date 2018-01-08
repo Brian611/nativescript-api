@@ -21,6 +21,19 @@ export class AuthService {
     return this.http.post<any>('http://localhost:3000/users/register', user, { headers: headers });
   }
 
+  topUp(data) {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post<any>('http://localhost:3000/topups/topup', data, { headers: headers });
+  }
+
+  getBalanceById(id) {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post<any>('http://localhost:3000/accounts/Account', id, { headers: headers });
+  }
+
+
   storeUserData(token, user) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
