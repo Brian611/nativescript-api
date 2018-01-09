@@ -1,25 +1,25 @@
 <h3 class="text-center">Shopping</h3>
 <div class="row">
-  <div class="col-md-4">
+  <div *ngFor="let product of products | async" class="col-md-4">
     <div class="thumbnail">
       <h4 class="text-center">
-        <span class="label label-info">Nokia</span>
+        <span class="label label-info">{{product.desc}}</span>
       </h4>
       <img src="http://placehold.it/350x250&text=Apples" class="img-responsive">
       <div class="caption">
         <div class="row">
           <div class="col-md-6 col-xs-6">
-            <h3>Apples</h3>
+            <h3>Quantity: {{product.qty}}</h3>
           </div>
           <div class="col-md-6 col-xs-6 price">
             <h3>
-              <label>R749.00</label>
+              <label>R{{product.price}}</label>
             </h3>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 offset-6">
-            <a href="#" class="btn btn-success btn-product">
+            <a (click)="onBuy(product)" class="btn btn-success btn-product">
               <span class="glyphicon glyphicon-shopping-cart"></span> Buy</a>
           </div>
         </div>

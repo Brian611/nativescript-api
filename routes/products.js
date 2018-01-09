@@ -7,6 +7,18 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const configuration = require('../configuration/database');
 
+router.get('/getAllProducts', (req, res, next) => {
+    Product.getAllProducts((error, products) => {
+        if (error) {
+            res.status(500);
+            res.json({ success: false, msg: 'Failed to get products' });
+        } else {
+            res.status(200);
+            res.json({ success: true, products: products });
+        }
+    });
+});
+
 router.post('/addProduct', (req, res, next) => {
     let newProduct = new Product({
         desc: req.body.desc,
@@ -21,7 +33,7 @@ router.post('/addProduct', (req, res, next) => {
             res.json({ success: false, msg: 'Failed to add product' });
         } else {
             res.status(200);
-            res.json({ success: true, msg: 'product added successfully' });
+            res.json({ success: true, product: result });
         }
     })
 });

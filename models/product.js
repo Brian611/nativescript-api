@@ -19,6 +19,10 @@ const ProductSchema = mongoose.Schema({
 
 const Product = module.exports = mongoose.model('Product', ProductSchema);
 
+module.exports.getAllProducts = function (callback) {
+    Product.find({}, callback);
+}
+
 module.exports.addProduct = (newProduct, callback) => {
     newProduct.save(callback);
 };

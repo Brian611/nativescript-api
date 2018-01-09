@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 import { User } from '../../classes/user';
 import { NgRedux, select } from 'ng2-redux';
 import {
-  TOGGLE_ADMIN
+  TOGGLE_ADMIN,
+  GET_USER_BY_ID
 } from '../../components/summary-customers/actions';
 import { Subscription } from 'rxjs/Subscription';
 import { IAppState } from '../../store';
@@ -65,6 +66,7 @@ export class LoginComponent implements OnInit {
           this.ngRedux.dispatch({ type: TOGGLE_ADMIN, payload: true });
         }
         this.authService.storeUserData(data.token, data.user);
+        this.ngRedux.dispatch({ type: GET_USER_BY_ID, payload: data.user });
         this.flashMessagesService.show('Logged in successfully!', { cssClass: 'success', timeout: 3000 });
         this.router.navigate(['home']);
       } else {

@@ -33,6 +33,15 @@ export class AuthService {
     return this.http.post<any>('http://localhost:3000/accounts/Account', id, { headers: headers });
   }
 
+  getAllProducts() {
+    return this.http.get<any>('http://localhost:3000/products/getAllProducts');
+  }
+
+  addproduct(data) {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post<any>('http://localhost:3000/products/addproduct', data, { headers: headers });
+  }
 
   storeUserData(token, user) {
     localStorage.setItem('id_token', token);

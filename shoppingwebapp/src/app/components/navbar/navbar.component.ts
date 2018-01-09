@@ -6,6 +6,9 @@ import { User } from '../../classes/user';
 import { NgRedux, select } from 'ng2-redux';
 import { IAppState } from '../../store';
 import { Subscription } from 'rxjs/Subscription';
+import {
+  TOGGLE_ADMIN
+} from '../summary-customers/actions';
 
 @Component({
   selector: 'app-navbar',
@@ -15,10 +18,11 @@ import { Subscription } from 'rxjs/Subscription';
 
 export class NavbarComponent implements OnInit {
 
-  user = new User();
+  admin: boolean;
+  id: number;
 
   private admin$: Subscription;
-
+  private id$: Subscription;
   constructor(private flashMessagesService: FlashMessagesService,
     private authService: AuthService,
     private router: Router,
@@ -27,14 +31,16 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.admin$ = this.ngRedux.select<boolean>(state => state.user.admin).subscribe(admin => { this.user.admin = admin; });
+    this.admin$ = this.ngRedux.select<boolean>(state => state.user.admin).subscribe(admin => { this.admin = admin; });
+    this.id$ = this.ngRedux.select<any>(state => state.user.user.id).subscribe(id => { this.id = id });
+
   }
   ngOnDestroy() {
     this.admin$.unsubscribe();
   }
-  //'width': `${this.percentageComplete}%`,
   onLogout() {
     this.authService.logout();
+    this.ngRedux.dispatch({ type: TOGGLE_ADMIN, payload: false })
     this.flashMessagesService.show('You are Logged out', { cssClass: 'success', timeout: 3000 });
     this.router.navigate(['login']);
     return false;

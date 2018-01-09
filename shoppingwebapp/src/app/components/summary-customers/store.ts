@@ -12,8 +12,8 @@ export interface IUserState {
 }
 
 export const USER_INITIAL_STATE: IUserState = {
-    user: null,
-    users: null,
+    user: {},
+    users: [{}],
     admin: false
 }
 
@@ -31,8 +31,10 @@ export function userReducer(state: IUserState = USER_INITIAL_STATE, action): IUs
 }
 
 export interface IUser {
-    id: number,
-    email: string,
-    password: string,
-    createdAt: Date
+    id?: string,
+    name?: string,
+    email?: string,
+    password?: string,
+    createdAt?: Date,
+    admin?: boolean
 }

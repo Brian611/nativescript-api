@@ -21,6 +21,7 @@ export class TopupComponent implements OnInit {
   balance: number;
   user = new User();
   amount: number
+  
   private balance$: Subscription;
 
   constructor(private ngRedux: NgRedux<IAppState>,
