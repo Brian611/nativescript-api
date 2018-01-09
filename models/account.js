@@ -14,6 +14,10 @@ const AccountSchema = mongoose.Schema({
 
 const Account = module.exports = mongoose.model('Account', AccountSchema);
 
+module.exports.createAccount = (newAcount, callback) => {
+    newAcount.save(callback);
+};
+
 module.exports.getAccountByUserId = function (userId, callback) {
     const query = { userId: userId };
     Account.findOne(query, callback);

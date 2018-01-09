@@ -7,6 +7,24 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const configuration = require('../configuration/database');
 
+router.post('/createAccount', (req, res, next) => {
+    let newAccount = new Accounts({
+        balance: req.body.balance,
+        desc: req.body.desc,
+        userId: req.body.userId
+    });
+
+    Accounts.createAccount(newAccount, (error, result) => {
+        if (error) {
+            res.status(500);
+            res.json({ success: false, msg: 'Failed to add account' });
+        } else {
+            res.status(200);
+            res.json({ success: true, account: result });
+        }
+    })
+});
+
 router.post('/account', (req, res, next) => {
     const userId = req.body.userId;
 

@@ -6,12 +6,12 @@ import {
 } from './actions';
 
 export interface IProductState {
-    // product: IProduct,
-    products: IProduct[]
+    product: {},
+    products: IProducts[]
 }
 
 export const PRODUCT_INITIAL_STATE: IProductState = {
-    // product: {},
+    product: {},
     products: [{}]
 }
 
@@ -27,7 +27,7 @@ export function productReducer(state: IProductState = PRODUCT_INITIAL_STATE, act
     return state;
 }
 
-export interface IProduct {
+export interface IProducts {
     _id?: string,
     _v?: any,
     price?: Number,

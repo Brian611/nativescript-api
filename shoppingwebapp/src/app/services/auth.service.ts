@@ -43,6 +43,22 @@ export class AuthService {
     return this.http.post<any>('http://localhost:3000/products/addproduct', data, { headers: headers });
   }
 
+  getProductById(id) {
+    return this.http.get<any>(`http://localhost:3000/products/product/${id}`);
+  }
+
+  addOrder(data) {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post<any>('http://localhost:3000/orders/addOrder', data, { headers: headers });
+  }
+
+  getAccountByUserId(data){
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post<any>('http://localhost:3000/accounts/Account', data, { headers: headers });
+  }
+
   storeUserData(token, user) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));

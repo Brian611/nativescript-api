@@ -19,16 +19,16 @@
           </div>
           <div class="col-xs-4">
             <h4 class="product-name">
-              <strong>Product name</strong>
+              <strong>{{product.desc}}</strong>
             </h4>
             <h4>
-              <small>Product description</small>
+              <small>Quantity: {{product.qty}}</small>
             </h4>
           </div>
           <div class="col-xs-6">
             <div class="col-xs-6 text-right">
               <h6>
-                <strong>25.00
+                <strong>R{{product.price}}
                 </strong>
               </h6>
             </div>
@@ -40,11 +40,11 @@
         <div class="row text-center">
           <div class="col-xs-9">
             <h4 class="text-right">Total
-              <strong>$50.00</strong>
+              <strong>R{{product.price}}</strong>
             </h4>
           </div>
           <div class="col-xs-3">
-            <button type="button" class="btn btn-success btn-block">
+            <button type="button" (click)="addOrder(product)" class="btn btn-success btn-block">
               Pay
             </button>
           </div>

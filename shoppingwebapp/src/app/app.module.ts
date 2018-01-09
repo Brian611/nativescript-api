@@ -37,7 +37,7 @@ const appRoutes: Routes = [
   { path: 'settings', component: DiscountSettingsComponent, pathMatch: 'full', canActivate: [AuthGaurd] },
   { path: 'product', component: ProductComponent, pathMatch: 'full', canActivate: [AuthGaurd] },
   { path: 'home', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGaurd] },
-  { path: 'cart', component: CartComponent, pathMatch: 'full', canActivate: [AuthGaurd] }
+  { path: 'cart/:id', component: CartComponent, pathMatch: 'full', canActivate: [AuthGaurd] }
 ]
 
 @NgModule({

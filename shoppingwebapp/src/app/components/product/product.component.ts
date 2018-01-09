@@ -3,7 +3,7 @@ import { NgRedux, select } from 'ng2-redux';
 import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs/Subscription';
 import { IAppState } from '../../store';
-import { IProduct, IProductState } from './store';
+import { IProducts, IProductState } from './store';
 import { Product } from '../../classes/product';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
