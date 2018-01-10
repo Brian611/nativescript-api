@@ -33,6 +33,26 @@ ng serve
 
 ```
 
+### Login Credentials
+
+Back-End App - Admin
+
+```
+email : admin@admin.com
+password : admin
+
+```
+
+App User - Anybody
+
+Existing User
+
+```
+email : brian@gmail.com
+password : 1234
+
+```
+
 ### APIs
 
 End Points
