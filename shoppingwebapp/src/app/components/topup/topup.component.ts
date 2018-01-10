@@ -36,7 +36,6 @@ export class TopupComponent implements OnInit {
       }
       this.authService.getBalanceById(data).subscribe(data => {
         if (data.success) {
-          console.log("init data", data);
           this.ngRedux.dispatch({ type: GET_TOPUP_BY_ID, payload: data.account })
         }
       });

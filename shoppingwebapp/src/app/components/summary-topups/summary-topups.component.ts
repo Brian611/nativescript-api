@@ -27,6 +27,7 @@ export class SummaryTopupsComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.authService.getTopUpsById(this.user.id).subscribe(data => {
       if (data.success) {
+        console.log(data.topups);
         this.ngRedux.dispatch({ type: GET_ALL_TOPUPS, payload: data.topups })
       }
     });
