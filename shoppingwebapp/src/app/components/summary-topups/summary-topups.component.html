@@ -3,17 +3,15 @@
   <thead>
     <tr>
       <th>#</th>
-      <th>Name</th>
       <th>Amount</th>
       <th>Date</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+    <tr *ngFor="let topUp of topUps | async; let i = index">
+      <th scope="row">{{i}}</th>
+      <td>R{{topUp.amount}}</td>
+      <td>{{topUp.createdAt}}</td>
     </tr>
   </tbody>
 </table>

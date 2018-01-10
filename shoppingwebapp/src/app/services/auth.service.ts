@@ -59,12 +59,17 @@ export class AuthService {
     return this.http.post<any>('http://localhost:3000/accounts/Account', data, { headers: headers });
   }
 
+  getTopUpsById(id) {
+    return this.http.get<any>(`http://localhost:3000/topups/topup/${id}`);
+  }
+
   storeUserData(token, user) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
     this.user = user;
   }
+
 
   loadToken() {
     const token = localStorage.getItem('id_token');
