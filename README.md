@@ -32,3 +32,22 @@ npm install
 ng serve
 
 ```
+
+### APIs
+
+End Points
+
+```
+http://localhost:3000/users/register
+http://localhost:3000/users/authenticate
+http://localhost:3000/topups/topup
+http://localhost:3000/topups/topup/:id
+http://localhost:3000/accounts/createAccount
+http://localhost:3000/accounts/loadAccount
+--full list in api--
+```
+
+## Authors
+
+* **Brian Pooe** - *Zapper*
+
