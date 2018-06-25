@@ -1,4 +1,4 @@
 module.exports = {
-    database: 'mongodb://brian:1234@ds247077.mlab.com:47077/hybridholdings',
-    secret: 'HybridHoldings'
+    database: `mongodb://${process.env.DBUSER}:${process.env.DBPASSWORD}@ds247077.mlab.com:47077/hybridholdings`,
+    secret: `${process.env.SECRET}`
 }
