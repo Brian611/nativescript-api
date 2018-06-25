@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
@@ -24,16 +23,11 @@ mongoose.connection.on('error', (error) => {
 const app = express();
 
 const users = require('./routes/users');
-const accounts = require('./routes/accounts');
-const topups = require('./routes/topups');
-const orders = require('./routes/orders');
 const products = require('./routes/products');
 
-const port = 3000 | process.env.PORT;
+const port = process.env.PORT;
 
 app.use(cors());
-
-app.use(express.static(path.join(__dirname, 'client')));
 
 app.use(bodyParser.json());
 
@@ -43,9 +37,6 @@ app.use(passport.session());
 require('./configuration/passport')(passport);
 
 app.use('/users', users);
-app.use('/accounts', accounts);
-app.use('/topups', topups);
-app.use('/orders', orders);
 app.use('/products', products);
 
 app.get('/', (req, res) => {

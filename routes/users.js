@@ -4,7 +4,6 @@ const User = require('../models/user');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const configuration = require('../configuration/database');
-const Accounts = require('../models/account');
 
 router.post('/register', (req, res, next) => {
 
@@ -18,17 +17,6 @@ router.post('/register', (req, res, next) => {
         if (error) {
             res.json({ success: false, msg: 'Failed to register user' });
         } else {
-            let newAccount = new Accounts({
-                balance: 50,
-                desc: "FNB",
-                userId: user._id
-            });
-            Accounts.createAccount(newAccount, (error, data) => {
-                if (error) {
-                    res.status(500);
-                    res.json({ success: false, msg: "Failed to create account" });
-                }
-            });
             res.json({ success: true, msg: 'User registered' });
         }
     })
