@@ -15,9 +15,9 @@ router.post('/register', (req, res, next) => {
 
     User.addUser(newUser, (error, user) => {
         if (error) {
-            res.json({ success: false, msg: 'Failed to register user' });
+            res.status(400).json({ success: false, msg: 'Failed to register user' });
         } else {
-            res.json({ success: true, msg: 'User registered' });
+            res.status(200).json({ success: true, msg: 'User registered' });
         }
     })
 })
@@ -38,7 +38,7 @@ router.post('/authenticate', (req, res, next) => {
                 const token = jwt.sign(user.toJSON(), configuration.secret, {
                     expiresIn: 86400 // 1 day
                 });
-                res.json({
+                res.status(200).json({
                     success: true,
                     token: 'JWT ' + token,
                     user: {
@@ -48,7 +48,7 @@ router.post('/authenticate', (req, res, next) => {
                     }
                 });
             } else {
-                return res.json({ success: false, msg: 'Invalid credentials' });
+                return res.status(400).json({ success: false, msg: 'Invalid credentials' });
             }
         });
     })
@@ -56,6 +56,6 @@ router.post('/authenticate', (req, res, next) => {
 
 router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res, next) => {
 
-    res.json({ user: req.user });
+    res.status(200).json({ user: req.user });
 });
 module.exports = router;
