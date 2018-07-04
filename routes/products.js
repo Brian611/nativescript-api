@@ -51,6 +51,16 @@ router.get("/product/:id", (req, res) => {
     });
 });
 
+router.delete("/product", (req, res) => {
+    Product.deleteProduct(req.body, (err, product) => {
+        if (err) {
+            res.status(500).json({ success: false, msg: err.message });
+        } else {
+            res.status(500).json({ success: true, product })
+        }
+    })
+})
+
 function getParamId(req) {
     return req.params.id;
 }

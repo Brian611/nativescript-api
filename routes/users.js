@@ -29,7 +29,7 @@ router.post('/authenticate', (req, res, next) => {
     User.getUserByEmail(email, (error, user) => {
         if (error) throw error;
         if (!user) {
-            return res.json({ success: false, msg: 'User not found' });
+            return res.status(404).json({ success: false, msg: 'User not found' });
         }
 
         User.comparePassword(password, user.password, (error, isMatch) => {

@@ -39,3 +39,7 @@ module.exports.deductQty = (userId, callback) => {
 module.exports.minusBought = (prodId, updatedQty, callback) => {
     Product.findByIdAndUpdate(prodId, { $set: { qty: updatedQty } }, { new: true, upsert: true }, callback);
 };
+
+module.exports.deleteProduct = (product, callback) => {
+    Product.remove(product, callback);
+}
