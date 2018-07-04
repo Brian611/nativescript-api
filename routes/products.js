@@ -51,8 +51,8 @@ router.get("/product/:id", (req, res) => {
     });
 });
 
-router.delete("/product", (req, res) => {
-    Product.deleteProduct(req.body, (err, product) => {
+router.delete("/product/:id", (req, res) => {
+    Product.deleteProductById(getParamId(req), (err, product) => {
         if (err) {
             res.status(500).json({ success: false, msg: err.message });
         } else {
