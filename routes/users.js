@@ -44,7 +44,7 @@ router.post('/authenticate', async (req, res, next) => {
                 }
             });
         } else {
-            next(res.status(500).json({
+            next(res.status(400).json({
                 success: true,
                 msg: "Invalid credentials"
             }));

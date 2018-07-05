@@ -41,7 +41,7 @@ router.get("/product/:id", async (req, res, next) => {
 router.delete("/product/:id", async (req, res, next) => {
     try {
         let product = await Product.deleteProductById(getParamId(req));
-        res.status(500).json(product);
+        res.status(200).json(product);
     } catch (error) {
         next(res.status(500).json(error));
     }
