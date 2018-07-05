@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const configuration = require('../configuration/database');
+const uuidv4 = require('uuid/v4');
 
 const UserSchema = mongoose.Schema({
+    id: {
+        type: String,
+        default: uuidv4()
+    },
     name: {
         type: String
     },
@@ -20,32 +24,31 @@ const UserSchema = mongoose.Schema({
 
 const User = module.exports = mongoose.model('User', UserSchema);
 
-module.exports.getUsers = function (id, callback) {
-    User.find({}, callback);
+module.exports.getUsers = async () => {
+    return await User.find({}).exec();
 }
 
-module.exports.getUserById = function (id, callback) {
-    User.findById(id, callback);
+module.exports.getUserById = async (id) => {
+    return await User.findById(id).exec();
 }
 
-module.exports.getUserByEmail = function (email, callback) {
+module.exports.getUserByEmail = async (email) => {
     const query = { email: email };
-    User.findOne(query, callback);
+    return await User.findOne(query).exec();
 }
 
-module.exports.addUser = function (newUser, callback) {
-    bcrypt.genSalt(10, (error, salt) => {
-        bcrypt.hash(newUser.password, salt, (error, hash) => {
-            if (error) throw error
-            newUser.password = hash;
-            newUser.save(callback);
-        })
-    })
-}
-
-module.exports.comparePassword = function (userPassword, hash, callback) {
-    bcrypt.compare(userPassword, hash, (error, isMatch) => {
-        if (error) throw error;
-        callback(null, isMatch);
+module.exports.addUser = (newUser) => {
+    return new Promise((resolve, reject) => {
+        bcrypt.genSalt(10, (error, salt) => {
+            bcrypt.hash(newUser.password, salt, (error, hash) => {
+                if (error) reject(error)
+                newUser.password = hash;
+                resolve(newUser.save());
+            });
+        });
     });
+}
+
+module.exports.comparePassword = async (userPassword, hash) => {
+    return await bcrypt.compare(userPassword, hash);
 }

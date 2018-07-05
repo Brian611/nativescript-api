@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const configuration = require('../configuration/database');
 const uuidv4 = require('uuid/v4');
 
 const ProductSchema = mongoose.Schema({
@@ -25,30 +23,30 @@ const ProductSchema = mongoose.Schema({
 
 const Product = module.exports = mongoose.model('Product', ProductSchema);
 
-module.exports.getAllProducts = function (callback) {
-    Product.find({}, callback);
+module.exports.getAllProducts = async () => {
+    return await Product.find({}).exec();
 }
 
-module.exports.addProduct = (newProduct, callback) => {
-    newProduct.save(callback);
+module.exports.addProduct = async (newProduct) => {
+    return await newProduct.save();
 };
 
-module.exports.getProductByProdId = function (prodId, callback) {
+module.exports.getProductByProdId = async (prodId) => {
     const query = { id: prodId };
-    Product.findOne(query, callback);
+    return await Product.findOne(query).exec();
 }
 
-module.exports.deductQty = (prodId, callback) => {
+module.exports.deductQty = async (prodId) => {
     const query = { id: prodId };
-    Product.aggregate([{ $project: { query, qty: { $subtract: ["$qty", 1] } } }], callback);
+    return await Product.aggregate([{ $project: { query, qty: { $subtract: ["$qty", 1] } } }]).exec();
 };
 
-module.exports.minusBought = (prodId, updatedQty, callback) => {
+module.exports.minusBought = async (prodId, updatedQty) => {
     const query = { id: prodId };
-    Product.findOneAndUpdate(query, { $set: { qty: updatedQty } }, { new: true, upsert: true }, callback);
+    return await Product.findOneAndUpdate(query, { $set: { qty: updatedQty } }, { new: true, upsert: true }).exec();
 };
 
-module.exports.deleteProductById = (prodId, callback) => {
+module.exports.deleteProductById = async (prodId) => {
     const query = { id: prodId };
-    Product.findByIdAndRemove(query, callback);
+    return await Product.findOneAndRemove(query).exec();
 }

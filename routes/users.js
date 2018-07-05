@@ -5,53 +5,51 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const configuration = require('../configuration/database');
 
-router.post('/register', (req, res, next) => {
+router.post('/register', async (req, res, next) => {
 
     let newUser = new User({
         name: req.body.name,
         email: req.body.email,
         password: req.body.password
     });
-
-    User.addUser(newUser, (error, user) => {
-        if (error) {
-            res.status(400).json({ success: false, msg: 'Failed to register user' });
-        } else {
-            res.status(200).json({ success: true, msg: 'User registered' });
-        }
-    })
+    try {
+        const user = await User.addUser(newUser);
+        res.status(200).json(user);
+    } catch (error) {
+        next(error);
+    }
 })
 
-router.post('/authenticate', (req, res, next) => {
+router.post('/authenticate', async (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
+    try {
+        let user = await User.getUserByEmail(email);
+        if (!user) next(res.status(404).json({ success: false, msg: "User not found" }));
 
-    User.getUserByEmail(email, (error, user) => {
-        if (error) throw error;
-        if (!user) {
-            return res.status(404).json({ success: false, msg: 'User not found' });
+        let isMatch = await User.comparePassword(password, user.password);
+        if (isMatch) {
+            const token = jwt.sign(user.toJSON(), configuration.secret, {
+                expiresIn: 86400 // 1 day
+            })
+            res.status(200).json({
+                success: true,
+                token: 'JWT ' + token,
+                user: {
+                    id: user._id,
+                    name: user.name,
+                    email: user.email
+                }
+            });
+        } else {
+            next(res.status(500).json({
+                success: true,
+                msg: "Invalid credentials"
+            }));
         }
-
-        User.comparePassword(password, user.password, (error, isMatch) => {
-            if (error) throw error;
-            if (isMatch) {
-                const token = jwt.sign(user.toJSON(), configuration.secret, {
-                    expiresIn: 86400 // 1 day
-                });
-                res.status(200).json({
-                    success: true,
-                    token: 'JWT ' + token,
-                    user: {
-                        id: user._id,
-                        name: user.name,
-                        email: user.email
-                    }
-                });
-            } else {
-                return res.status(400).json({ success: false, msg: 'Invalid credentials' });
-            }
-        });
-    })
+    } catch (error) {
+        next(error);
+    }
 });
 
 router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res, next) => {
