@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/product');
+const uuidv4 = require('uuid/v4');
 
 router.get('/getAllProducts', async (req, res, next) => {
     try {
@@ -13,6 +14,7 @@ router.get('/getAllProducts', async (req, res, next) => {
 
 router.post('/addProduct', async (req, res, next) => {
     let newProduct = new Product({
+        id: uuidv4(),
         desc: req.body.desc,
         price: req.body.price,
         qty: req.body.qty,

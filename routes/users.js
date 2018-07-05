@@ -4,10 +4,12 @@ const User = require('../models/user');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const configuration = require('../configuration/database');
+const uuidv4 = require('uuid/v4');
 
 router.post('/register', async (req, res, next) => {
 
     let newUser = new User({
+        userId: uuidv4(),
         name: req.body.name,
         email: req.body.email,
         password: req.body.password
