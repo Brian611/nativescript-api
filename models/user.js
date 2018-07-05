@@ -28,7 +28,7 @@ module.exports.getUsers = async () => {
 }
 
 module.exports.getUserById = async (id) => {
-    const query = { userid: id }
+    const query = { userId: id }
     return await User.findOne(query).exec();
 }
 

@@ -40,7 +40,7 @@ module.exports.deductQty = async (prodId) => {
 };
 
 module.exports.minusBought = async (prodId, updatedQty) => {
-    const query = { id: prodId };
+    const query = { prodId: prodId };
     return await Product.findOneAndUpdate(query, { $set: { qty: updatedQty } }, { new: true, upsert: true }).exec();
 };
 
