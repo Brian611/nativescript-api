@@ -14,7 +14,7 @@ router.get('/getAllProducts', (req, res, next) => {
             res.json({ success: false, msg: 'Failed to get products' });
         } else {
             res.status(200);
-            res.json({ success: true, products: products });
+            res.json(products);
         }
     });
 });
@@ -33,7 +33,7 @@ router.post('/addProduct', (req, res, next) => {
             res.json({ success: false, msg: 'Failed to add product' });
         } else {
             res.status(200);
-            res.json({ success: true, product: result });
+            res.json(result);
         }
     })
 });
@@ -46,7 +46,7 @@ router.get("/product/:id", (req, res) => {
             res.json({ success: false, msg: err.message });
         } else {
             res.status(200);
-            res.json({ success: true, product: product });
+            res.json(product);
         }
     });
 });
@@ -56,7 +56,7 @@ router.delete("/product/:id", (req, res) => {
         if (err) {
             res.status(500).json({ success: false, msg: err.message });
         } else {
-            res.status(500).json({ success: true, product })
+            res.status(500).json(product)
         }
     })
 })
