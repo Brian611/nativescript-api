@@ -5,7 +5,7 @@ const uuidv4 = require('uuid/v4');
 
 const ProductSchema = mongoose.Schema({
     id: {
-        type: string,
+        type: String,
         unique: true,
         default: uuidv4()
     },
