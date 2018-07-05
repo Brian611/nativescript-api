@@ -35,7 +35,7 @@ module.exports.getProductByProdId = async (prodId) => {
 }
 
 module.exports.deductQty = async (prodId) => {
-    const query = { id: prodId };
+    const query = { prodId: prodId };
     return await Product.aggregate([{ $project: { query, qty: { $subtract: ["$qty", 1] } } }]).exec();
 };
 
@@ -45,6 +45,6 @@ module.exports.minusBought = async (prodId, updatedQty) => {
 };
 
 module.exports.deleteProductById = async (prodId) => {
-    const query = { id: prodId };
+    const query = { prodId: prodId };
     return await Product.findOneAndRemove(query).exec();
 }
