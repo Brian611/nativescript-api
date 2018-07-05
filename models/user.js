@@ -5,7 +5,7 @@ const uuidv4 = require('uuid/v4');
 const UserSchema = mongoose.Schema({
     id: {
         type: String,
-        default: uuidv4()
+        default: () => uuidv4()
     },
     name: {
         type: String
