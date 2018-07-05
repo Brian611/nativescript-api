@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const uuidv4 = require('uuid/v4');
 
 const ProductSchema = mongoose.Schema({
-    id: {
+    prodId: {
         type: String,
         unique: true,
         default: () => uuidv4()
@@ -32,7 +32,7 @@ module.exports.addProduct = async (newProduct) => {
 };
 
 module.exports.getProductByProdId = async (prodId) => {
-    const query = { id: prodId };
+    const query = { prodId: prodId };
     return await Product.findOne(query).exec();
 }
 

@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/product');
 
-
 router.get('/getAllProducts', async (req, res, next) => {
     try {
         const products = await Product.getAllProducts();
@@ -48,4 +47,5 @@ router.delete("/product/:id", async (req, res, next) => {
 function getParamId(req) {
     return req.params.id;
 }
+
 module.exports = router;

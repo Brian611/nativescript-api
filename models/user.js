@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const uuidv4 = require('uuid/v4');
 
 const UserSchema = mongoose.Schema({
-    id: {
+    userId: {
         type: String,
         default: () => uuidv4()
     },
@@ -29,7 +29,8 @@ module.exports.getUsers = async () => {
 }
 
 module.exports.getUserById = async (id) => {
-    return await User.findById(id).exec();
+    const query = { userid: id }
+    return await User.findOne(query).exec();
 }
 
 module.exports.getUserByEmail = async (email) => {
