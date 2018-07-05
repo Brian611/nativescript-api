@@ -14,12 +14,13 @@ router.get('/getAllProducts', async (req, res, next) => {
 
 router.post('/addProduct', async (req, res, next) => {
     let newProduct = new Product({
-        id: uuidv4(),
+        prodId: uuidv4(),
         desc: req.body.desc,
         price: req.body.price,
         qty: req.body.qty,
         img: req.body.img
     });
+
     try {
         let product = await Product.addProduct(newProduct);
         res.status(200).json(product);
