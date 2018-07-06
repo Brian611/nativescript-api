@@ -51,7 +51,7 @@ router.post('/authenticate', async (req, res, next) => {
 
     try {
         let user = await User.getUserByEmail(email);
-        if (isEmpty(user)) throw new CustomErrors("User not found", 400);
+        if (isEmpty(user)) throw new CustomErrors("User not found", 404);
 
         let isMatch = await User.comparePassword(password, user.password);
         if (isMatch) {
