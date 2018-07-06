@@ -6,13 +6,16 @@ const ProductSchema = mongoose.Schema({
         unique: true
     },
     price: {
-        type: Number
+        type: Number,
+        require: true
     },
     qty: {
-        type: Number
+        type: Number,
+        require: true
     },
     desc: {
-        type: String
+        type: String,
+        require: true
     },
     img: {
         type: String
