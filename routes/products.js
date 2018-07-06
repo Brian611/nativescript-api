@@ -48,7 +48,7 @@ router.post('/addProduct', async (req, res, next) => {
         if (isEmpty(product)) {
             throw new CustomErrors("Problem adding product", 500);
         } else if (has(product.errors)) {
-            new CustomErrors("An Error occured adding product", 400)
+            throw new CustomErrors("An Error occured adding product", 400)
         }
         res.status(200).json(product);
     } catch (error) {
