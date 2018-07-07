@@ -26,7 +26,7 @@ const app = express();
 const users = require('./routes/users');
 const products = require('./routes/products');
 
-const port = 3000 | process.env.PORT;
+const port = process.env.PORT;
 
 app.use(cors());
 
