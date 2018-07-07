@@ -10,9 +10,10 @@ const validator = require('body-validator');
 router.get('/getAllProducts', async (req, res, next) => {
     try {
         const products = await Product.getAllProducts();
+        console.dir(products);
         if (isEmpty(products)) {
             throw new CustomErrors("Products not available", 404);
-        } else if (has(product.errors)) {
+        } else if (has(products.errors)) {
             throw new CustomErrors("An Error occured fetching products", 500);
         } else {
             res.status(200).json(products);
