@@ -80,7 +80,7 @@ router.delete("/product/:id", async (req, res, next) => {
         } else if (has(product.errors)) {
             throw new CustomErrors("An Error occured deleting product", 500);
         } else {
-            res.status(200).json(products);
+            res.status(200).json(product);
         }
     } catch (error) {
         next(res.status(error.code).json(error));
